@@ -45,7 +45,7 @@ Happy testing!
 
 ## Demo
 
-Curious to see our Blackjack game in action? Look no further! Check out the demo video below to see how the game works and why it's so enjoyable. It's time to sit back, relax, and enjoy some Blackjack fun!" 🃏✨
+Curious to see our Blackjack game in action? Look no further! Check out the demo video below to see how the game works. It's time to sit back, relax, and enjoy some Blackjack fun! 🃏✨
 
 https://github.com/uanderson/bj21/assets/2034724/b8ccad5b-432b-42f1-96b4-336db9b760c3
 
