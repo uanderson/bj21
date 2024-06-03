@@ -50,7 +50,7 @@ export class Hand {
    * current hand's total value. If the total value exceeds 21 and there are Aces present in the hand,
    * adjusts the total value by treating Aces as having a value of 1 to prevent busting.
    *
-   * @returns {number} The total value of the player's hand.
+   * @returns the total value of the player's hand.
    */
   getTotal() {
     let total = 0;
@@ -86,7 +86,7 @@ export class Hand {
   /**
    * Checks if the player's hand has a Blackjack.
 
-   * @returns {boolean} True if the player's hand has a Blackjack, otherwise false.
+   * @returns true if the player's hand has a Blackjack, otherwise false.
    */
   isBlackjack() {
     return this.cards.length === 2 && this.getTotal() === 21;
@@ -97,8 +97,8 @@ export class Hand {
    * of the game round. Returns one of the following outcomes: 'win' if the player wins, 'lose' if the player loses,
    * or 'push' if it's a tie. The comparison considers bust hands and the total values of the hands.
    *
-   * @param {Hand} anotherHand - The hand to compare against.
-   * @returns {string} The outcome of the comparison: 'win', 'lose', or 'push'.
+   * @param anotherHand - The hand to compare against.
+   * @returns the outcome of the comparison: 'win', 'lose', or 'push'.
    */
   compareTo(anotherHand) {
     const playerTotal = this.getTotal();
@@ -126,7 +126,7 @@ export class Hand {
   /**
    * Retrieves the current state of the player's hand.
    *
-   * @returns {Object} An object containing the current state of the player's hand.
+   * @returns an object with the state of the player.
    */
   getState() {
     return {

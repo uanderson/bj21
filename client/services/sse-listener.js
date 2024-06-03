@@ -1,15 +1,17 @@
 import { acquirePlayerId } from '../utils/player.js';
 
 export class SSEListener {
-  constructor(gameStore) {
+  constructor(gameStore, playerId) {
     this.gameStore = gameStore;
+    this.playerId = playerId;
   }
 
   listen(pathname) {
-    const url = import.meta.env.DEV ? import.meta.env.VITE_SERVER_URL : '';
-    const playerId = acquirePlayerId();
+    const url = import.meta.env.DEV
+      ? import.meta.env.VITE_SERVER_URL ?? ''
+      : '';
 
-    this.eventSource = new EventSource(`${url}${pathname}?playerId=${playerId}`);
+    this.eventSource = new EventSource(`${url}${pathname}?playerId=${this.playerId}`);
     this.eventSource.addEventListener('error', this.handleError.bind(this));
     this.eventSource.addEventListener('message', this.handleMessage.bind(this));
   }

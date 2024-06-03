@@ -27,7 +27,7 @@ export class Dealer {
   }
 
   /**
-   * Clears the dealer's hand.
+   * Restarts the dealer's hand.
    */
   restart() {
     this.hand.restart();
@@ -52,8 +52,8 @@ export class Dealer {
   }
 
   /**
-   * Continuously draws cards from the deck and adds them to the dealer's hand until the total value of the hand
-   * reaches or exceeds the predefined dealer stands threshold.
+   * Continuously draws cards from the deck and adds them to the dealer's hand until the total
+   * value of the hand reaches or exceeds the predefined dealer stands threshold.
    */
   takeTurn() {
     while (this.hand.getTotal() < DEALER_STANDS_THRESHOLD) {
@@ -73,7 +73,7 @@ export class Dealer {
   /**
    * Retrieves the state of the dealer's hand.
    *
-   * @returns {Object} The state of the dealer's hand.
+   * @returns the state of the dealer.
    */
   getState() {
     return { ...this.hand.getState() };

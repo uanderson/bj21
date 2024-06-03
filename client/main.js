@@ -13,8 +13,9 @@ import { GameStore } from './store/game-store.js';
 import { registerCustomElement } from './utils/elements.js';
 import { acquirePlayerId } from './utils/player.js';
 
-const gameStore = new GameStore();
-const gameService = new GameService(acquirePlayerId());
+const playerId = acquirePlayerId();
+const gameStore = new GameStore(playerId);
+const gameService = new GameService(playerId);
 
 // Register all custom elements
 registerCustomElement('bj21-card', CardComponent, []);
@@ -27,7 +28,7 @@ registerCustomElement('bj21-hand', HandComponent, [ gameStore ]);
 registerCustomElement('bj21-seat', SeatComponent, [ gameStore, gameService ]);
 
 // Start listening for SSE events
-const sseListener = new SSEListener(gameStore);
+const sseListener = new SSEListener(gameStore, playerId);
 sseListener.listen('/sse');
 
 gameStore.subscribe(({ isReady }) => {

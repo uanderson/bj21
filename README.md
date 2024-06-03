@@ -41,8 +41,21 @@ npm run client:test
 npm run server:test
 ```
 
-Just remember to run them in separate terminals, because they block the process. Happy testing!
+Happy testing!
 
 ## Demo
 
+Curious to see our Blackjack game in action? Look no further! Check out the demo video below to see how the game works. It's time to sit back, relax, and enjoy some Blackjack fun! 🃏✨
+
 https://github.com/uanderson/bj21/assets/2034724/b8ccad5b-432b-42f1-96b4-336db9b760c3
+
+## Roadmap
+
+- [ ] Sprinkle in some Cypress for end-to-end testing
+- [ ] Make the game responsive so you can play on any device
+- [ ] Level up our server's skills in handling user disappearances
+- [ ] Unlock advanced blackjack maneuvers: split, insurance, and double down
+- [ ] Unleash the auto bet feature to keep the party rolling without waiting for stragglers
+- [ ] Level up our front-end with some cool animations and transitions
+- [ ] Add some sweet sound effects to make the game even more fun
+- [ ] Break the barriers and support multiple games simultaneously like a gaming wizard! 🧙‍♂️🃏

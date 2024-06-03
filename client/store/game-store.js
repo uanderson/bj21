@@ -1,13 +1,12 @@
-import { acquirePlayerId } from '../utils/player.js';
-
 export class GameStore {
-  constructor() {
+  constructor(playerId) {
+    this.playerId = playerId;
+    this.subscribers = [];
+
     this.state = {
       chipValue: 50,
       isReady: false
     };
-
-    this.subscribers = [];
   }
 
   setState(newState) {
@@ -17,7 +16,8 @@ export class GameStore {
 
   setServerState(state) {
     const game = state.game;
-    const playerId = acquirePlayerId();
+    const playerId = this.playerId;
+
     const seat = game.seats.find(seat => seat.player?.id === playerId);
     const isMyTurn = game.playerTurnId === playerId;
 
@@ -25,7 +25,7 @@ export class GameStore {
       ...seat.player,
       seatPosition: seat.position,
       isPlaying: isMyTurn
-    } : 0;
+    } : null;
 
     const updatedState = {
       ...state,
@@ -39,7 +39,7 @@ export class GameStore {
       }
     };
 
-    this.setState(updatedState);
+    requestAnimationFrame(() => this.setState(updatedState));
   }
 
   getState() {

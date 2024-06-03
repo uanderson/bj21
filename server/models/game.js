@@ -5,11 +5,13 @@ import { Player } from './player.js';
 import { Seat } from './seat.js';
 
 export class Game {
-  constructor(dealer) {
+  constructor(dealer, stateMachine = new GameStateMachine()) {
     this.dealer = dealer;
+    this.stateMachine = stateMachine;
     this.roundRobin = [];
     this.playersReady = [];
-    this.stateMachine = new GameStateMachine(this);
+
+    this.stateMachine.setGame(this);
     this.createSeats();
   }
 
@@ -27,7 +29,7 @@ export class Game {
    * @throws {ModelError} Throws an error if the game state does not match the specified state.
    */
   assertGameState(state) {
-    const { currentState } = this.stateMachine;
+    const currentState = this.stateMachine.getCurrentState();
 
     if (currentState !== state) {
       throwModelError(`Action unavailable when the game is on the state ${currentState}`);
@@ -98,9 +100,7 @@ export class Game {
       throwModelError('Player is not here');
     }
 
-    this.playersReady = this.playersReady
-      .filter(playerId => playerId !== seat.getPlayer().getId());
-
+    this.removePlayerReady(seat.getPlayer());
     seat.removePlayer();
   }
 
@@ -116,14 +116,14 @@ export class Game {
   deal(playerId) {
     this.assertGameState('initial');
 
-    if (this.playersReady.includes(playerId)) {
-      throwModelError('Player has already requested to deal');
-    }
-
     const seat = this.seats.find(seat => seat.hasPlayer(playerId));
 
     if (!seat?.getPlayer().hasBet()) {
       throwModelError('Player has not placed a bet yet');
+    }
+
+    if (this.playersReady.includes(playerId)) {
+      throwModelError('Player has already requested to deal');
     }
 
     this.playersReady.push(playerId);
@@ -157,8 +157,7 @@ export class Game {
     const player = seat.getPlayer();
     player.clearBet();
 
-    this.playersReady = this.playersReady
-      .filter(playerId => playerId !== player.getId());
+    this.removePlayerReady(player);
   }
 
   /**
@@ -172,7 +171,7 @@ export class Game {
   hit(playerId) {
     this.assertGameState('round-robin');
 
-    if (this.playerTurn.id !== playerId) {
+    if (!this.isPlayerTurn(playerId)) {
       throwModelError('It is not your turn');
     }
 
@@ -185,7 +184,7 @@ export class Game {
     const player = seat.getPlayer();
     this.dealer.dealCardToPlayer(player);
 
-    if (player.hand.isBust()) {
+    if (player.getHand().isBust()) {
       this.progressRoundRobin();
     }
   }
@@ -200,7 +199,7 @@ export class Game {
   stand(playerId) {
     this.assertGameState('round-robin');
 
-    if (this.playerTurn.id !== playerId) {
+    if (!this.isPlayerTurn(playerId)) {
       throwModelError('It is not your turn');
     }
 
@@ -242,11 +241,11 @@ export class Game {
   }
 
   /**
-   * Starts the round robin process for player turns.
-   * Players are selected in a round robin fashion from the occupied seats,
+   * Starts the round-robin process for player turns.
+   * Players are selected in a round-robin fashion from the occupied seats,
    * excluding those who already have a blackjack hand.
    * If there are no eligible players left, transitions the state machine to 'noPlayersLeft',
-   * otherwise assigns the turn to the next player in the round robin sequence.
+   * otherwise assigns the turn to the next player in the round-robin sequence.
    */
   startRoundRobin() {
     this.roundRobin = this.seats
@@ -304,6 +303,25 @@ export class Game {
    */
   whenStateIs(state, callback) {
     this.stateMachine.whenStateIs(state, callback);
+  }
+
+  /**
+   * Verifies if it is the player's turn to play.
+   *
+   * @param playerId - The player to remove
+   */
+  isPlayerTurn(playerId) {
+    return this.playerTurn?.id === playerId;
+  }
+
+  /**
+   * Removes the player from the list of players who are ready to deal.
+   *
+   * @param player - The player to remove
+   */
+  removePlayerReady(player) {
+    this.playersReady = this.playersReady
+      .filter(playerId => playerId !== player?.getId());
   }
 
   /**
