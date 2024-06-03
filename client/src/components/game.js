@@ -116,10 +116,10 @@ template.innerHTML = `
   <div class="top-row">
     <div class="rule-info">
       <div class="info-box">
-        <p>All seated users need to click deal to start a game</p>
+        <p>⚠️ All seated players need to click deal to start a game</p>
       </div>
       <div class="info-box">
-        <p>User with negative balance will be in debt with the "casino" 🔥</p>
+        <p>🔥 Player with negative balance will be in debt with the "casino"</p>
       </div>
     </div>
 
