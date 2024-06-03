@@ -1,5 +1,3 @@
-import { acquirePlayerId } from '../utils/player.js';
-
 export class GameStore {
   constructor(playerId) {
     this.playerId = playerId;
