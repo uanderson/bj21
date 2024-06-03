@@ -1,10 +1,8 @@
-# Welcome
+# Welcome to our super cool version of the classic Blackjack game! 🎉
 
-Welcome to our super cool version of the classic Blackjack game! 🎉
+Whether you're flying solo or grabbing some friends, get ready for some Blackjack fun! This game lets multiple players join in on the action at the same time. Currently, we've got a limited number of seats, so it's first-come, first-served. Just a heads up, though: we're not quite ready for multiple games happening at once... but who knows what the future holds?
 
-Grab your friends and get ready for some multiplayer fun because this game lets multiple players join in on the action at the same time. Currently, we've got a limited number of seats, so it's first-come, first-served. Just a heads up, though: we're not quite ready for multiple games happening at once... but who knows what the future holds?
-
-We're keeping it simple with our tech stack. For the front-end, we're rocking vanilla web components? On the back-end, we've got Node.js with Express, handling all the heavy lifting.
+We're keeping it simple with our tech stack. For the front-end, we're rocking vanilla web components. On the back-end, we've got Node.js with Express, handling all the heavy lifting.
 
 So, shuffle up, deal the cards, and may the best hand win! 🃏✨
 
