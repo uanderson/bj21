@@ -31,7 +31,7 @@ export class GameStore {
       ...state,
       player,
       controls: {
-        canDeal: !game.usersReady.includes(playerId) && seat?.player?.bet > 0,
+        canDeal: !game.playersReady.includes(playerId) && seat?.player?.bet > 0,
         canHit: isMyTurn,
         canStand: isMyTurn,
         canClearBet: game.state === 'initial' && seat?.player?.bet > 0,

@@ -8,7 +8,7 @@ export class Game {
   constructor(dealer) {
     this.dealer = dealer;
     this.roundRobin = [];
-    this.usersReady = [];
+    this.playersReady = [];
     this.stateMachine = new GameStateMachine(this);
     this.createSeats();
   }
@@ -98,6 +98,9 @@ export class Game {
       throwModelError('Player is not here');
     }
 
+    this.playersReady = this.playersReady
+      .filter(playerId => playerId !== seat.getPlayer().getId());
+
     seat.removePlayer();
   }
 
@@ -113,7 +116,7 @@ export class Game {
   deal(playerId) {
     this.assertGameState('initial');
 
-    if (this.usersReady.includes(playerId)) {
+    if (this.playersReady.includes(playerId)) {
       throwModelError('Player has already requested to deal');
     }
 
@@ -123,11 +126,11 @@ export class Game {
       throwModelError('Player has not placed a bet yet');
     }
 
-    this.usersReady.push(playerId);
+    this.playersReady.push(playerId);
 
     const every = this.seats
-      .filter(seat => seat.getPlayer())
-      .every(seat => this.usersReady.includes(seat.getPlayer().id));
+      .filter(seat => seat.isOccupied())
+      .every(seat => this.playersReady.includes(seat.getPlayer().id));
 
     if (every) {
       this.seats.forEach(seat => seat.getPlayer()?.deductBet());
@@ -153,6 +156,9 @@ export class Game {
 
     const player = seat.getPlayer();
     player.clearBet();
+
+    this.playersReady = this.playersReady
+      .filter(playerId => playerId !== player.getId());
   }
 
   /**
@@ -283,11 +289,11 @@ export class Game {
    * and clears the round-robin turn order and player readiness status.
    */
   restart() {
-    this.playerTurn = null;
-    this.seats.forEach(seat => seat.player?.restart());
-    this.dealer.restart();
     this.roundRobin = [];
-    this.usersReady = [];
+    this.playersReady = [];
+    this.playerTurn = null;
+    this.dealer.restart();
+    this.seats.forEach(seat => seat.getPlayer()?.restart());
   }
 
   /**
@@ -307,7 +313,7 @@ export class Game {
   getState() {
     const state = {
       state: this.stateMachine.currentState,
-      usersReady: this.usersReady,
+      playersReady: this.playersReady,
       seats: this.seats.map(seat => seat.getState()),
       dealer: this.dealer.getState(),
     }
