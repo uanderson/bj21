@@ -63,16 +63,6 @@ export class Player {
   }
 
   /**
-   * Checks if the player's hand has a Blackjack. If the player's hand is a Blackjack,
-   * increases the player's balance by 2.5 times the bet amount, representing the payout for a Blackjack win.
-   */
-  trySettleBlackjackBet() {
-    if (this.hand.isBlackjack()) {
-      this.balance += this.hand.getBet() * 2.5;
-    }
-  }
-
-  /**
    * Compares the player's hand with the dealer's hand to determine the outcome of the round. Based on the comparison result,
    * adjusts the player's balance accordingly. If the player wins, the player's balance is increased by double the bet amount.
    * If the result is a push (tie), the player's balance is increased by the original bet amount.
@@ -80,6 +70,12 @@ export class Player {
    * @param dealer - The dealer's hand to compare against.
    */
   settleBets(dealer) {
+    if (this.hand.isBlackjack()) {
+      this.balance += this.hand.getBet() * 2.5;
+
+      return;
+    }
+
     const result = this.hand.compareTo(dealer.getHand());
 
     if (result === 'win') {

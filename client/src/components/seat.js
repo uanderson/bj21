@@ -79,8 +79,8 @@ template.innerHTML = `
 
     <div class="seat">
       <bj21-chip class="chip" value="5"></bj21-chip>
-      <img class="person" src="/person.svg"></img>
-      <img class="locked" src="/locked.svg"></img>
+      <img class="person" src="/person.svg">
+      <img class="locked" src="/locked.svg">
       <button type="button" class="bet-button" id="bet-button">
         Place Bet
       </button>
@@ -129,7 +129,7 @@ export class SeatComponent extends HTMLElement {
     });
   }
 
-  onStateChange = ({ player }) => {
+  onStateChange = ({ player, game }) => {
     const isMySeat = player && player?.id === this.seat.player?.id;
     const elements = this.shadowRoot.querySelectorAll('.chip, .person, .locked, .bet-button');
     const [ chip, person, locked, betButton ] = elements;
@@ -151,7 +151,7 @@ export class SeatComponent extends HTMLElement {
 
     if (this.seat.isOccupied) {
       person.style.display = 'block';
-    } else if (!player) {
+    } else if (!player && game.state === 'initial') {
       betButton.style.display = 'block';
     } else {
       locked.style.display = 'block';

@@ -42,16 +42,6 @@ describe('Player', () => {
     assert.deepStrictEqual(player.getHand().getCards(), [card]);
   });
 
-  it('should settle blackjack bet', () => {
-    const card1 = new Card('A', 'hearts');
-    const card2 = new Card('J', 'hearts');
-    player.receiveCard(card1);
-    player.receiveCard(card2);
-    player.placeBet(100);
-    player.trySettleBlackjackBet();
-    assert.strictEqual(player.balance, 1250);
-  });
-
   it('should settle bets based on outcome', () => {
     const dealer = new Player('dealer');
     const card1 = new Card('10', 'hearts');
@@ -78,5 +68,12 @@ describe('Player', () => {
       isBust: false,
       isBlackjack: false
     });
+  });
+
+  it('should check if player has placed a bet', () => {
+    player.placeBet(100);
+    assert.strictEqual(player.hasBet(), true);
+    player.clearBet();
+    assert.strictEqual(player.hasBet(), false);
   });
 });

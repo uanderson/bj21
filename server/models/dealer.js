@@ -24,8 +24,6 @@ export class Dealer {
       players.forEach(player => this.dealCardToPlayer(player));
       this.dealCardToSelf();
     }
-
-    players.forEach(player => player.trySettleBlackjackBet());
   }
 
   /**
