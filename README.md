@@ -41,7 +41,20 @@ npm run client:test
 npm run server:test
 ```
 
-Just remember to run them in separate terminals, because they block the process. Happy testing!
+Happy testing!
+
+## Roadmap
+
+### Project
+
+- [ ] Make the game responsive so you can play on any device
+- [ ] Sprinkle in some Cypress for end-to-end testing
+- [ ] Level up our server's skills in handling user disappearances
+- [ ] Unlock advanced blackjack maneuvers: split, insurance, and double down
+- [ ] Unleash the auto bet feature to keep the party rolling without waiting for stragglers
+- [ ] Level up our front-end with some cool animations and transitions
+- [ ] Add some sweet sound effects to make the game even more fun
+- [ ] Break the barriers and support multiple games simultaneously like a gaming wizard! 🧙‍♂️🃏
 
 ## Demo
 
