@@ -43,6 +43,10 @@ npm run server:test
 
 Happy testing!
 
+## Demo
+
+https://github.com/uanderson/bj21/assets/2034724/b8ccad5b-432b-42f1-96b4-336db9b760c3
+
 ## Roadmap
 
 - [ ] Sprinkle in some Cypress for end-to-end testing
@@ -53,7 +57,3 @@ Happy testing!
 - [ ] Level up our front-end with some cool animations and transitions
 - [ ] Add some sweet sound effects to make the game even more fun
 - [ ] Break the barriers and support multiple games simultaneously like a gaming wizard! 🧙‍♂️🃏
-
-## Demo
-
-https://github.com/uanderson/bj21/assets/2034724/b8ccad5b-432b-42f1-96b4-336db9b760c3
