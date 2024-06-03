@@ -45,10 +45,8 @@ Happy testing!
 
 ## Roadmap
 
-### Project
-
-- [ ] Make the game responsive so you can play on any device
 - [ ] Sprinkle in some Cypress for end-to-end testing
+- [ ] Make the game responsive so you can play on any device
 - [ ] Level up our server's skills in handling user disappearances
 - [ ] Unlock advanced blackjack maneuvers: split, insurance, and double down
 - [ ] Unleash the auto bet feature to keep the party rolling without waiting for stragglers
