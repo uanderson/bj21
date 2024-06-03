@@ -1,8 +1,5 @@
 export default {
-  root: './client/src',
-  build: {
-    outDir: '../dist'
-  },
+  root: './client',
   test: {
     globals: true,
     environment: 'jsdom'

@@ -1,6 +1,6 @@
 export class GameService {
-  constructor(sessionId) {
-    this.sessionId = sessionId;
+  constructor(playerId) {
+    this.playerId = playerId;
   }
 
   /**
@@ -14,7 +14,7 @@ export class GameService {
     // Prepare the headers
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('X-Player-Id', this.sessionId);
+    headers.append('X-Player-Id', this.playerId);
 
     const fetchOptions = {
       body: JSON.stringify(body),

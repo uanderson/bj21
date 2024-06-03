@@ -15,7 +15,7 @@ describe('GameService', () => {
   });
 
   it('should initialize with a player id', () => {
-    expect(gameService.sessionId).toBe('foo');
+    expect(gameService.playerId).toBe('foo');
   });
 
   it('should make a POST request with correct parameters', async () => {

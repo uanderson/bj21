@@ -37,6 +37,7 @@ export class SSEHandler {
     for (const [ _, client ] of Object.entries(this.playerSessions)) {
       const state = this.game.getState()
 
+      client.write(`id: ${Date.now()}\n`)
       client.write(`data: ${JSON.stringify(state)}\n\n`);
     }
   }

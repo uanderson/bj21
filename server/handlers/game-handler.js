@@ -52,7 +52,8 @@ export class GameHandler {
     const { amount, seat } = req.body;
 
     this.game.placeBet(playerId, Number(seat), Number(amount));
-    this.sse.notify();
+
+    setTimeout(() => this.sse.notify());
 
     res.status(204).send();
   }
