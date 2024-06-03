@@ -47,7 +47,7 @@ export class Seat {
   /**
    * Retrieves the current state of the seat.
    *
-   * @returns {Object} An object containing the current state of the seat.
+   * @returns an object with the state of the seat.
    */
   getState() {
     const state = {

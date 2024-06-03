@@ -20,15 +20,8 @@ export class GameStore {
     const game = state.game;
     const playerId = this.playerId;
 
-    console.log('>>> game', game);
-    console.log('>>> playerId', playerId);
-
     const seat = game.seats.find(seat => seat.player?.id === playerId);
     const isMyTurn = game.playerTurnId === playerId;
-
-    console.log('>>> game', game);
-    console.log('>>> playerId', playerId);
-    console.log('>>> seat', seat);
 
     const player = seat?.player ? {
       ...seat.player,

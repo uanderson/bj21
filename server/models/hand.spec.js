@@ -18,6 +18,7 @@ describe('Hand', () => {
   it('should add card to hand', () => {
     const card = new Card('10', 'hearts');
     hand.addCard(card);
+
     assert.deepStrictEqual(hand.getCards(), [card]);
   });
 
@@ -37,20 +38,17 @@ describe('Hand', () => {
   });
 
   it('should calculate total value of hand', () => {
-    const card1 = new Card('10', 'hearts');
-    const card2 = new Card('J', 'hearts');
-    hand.addCard(card1);
-    hand.addCard(card2);
+    hand.addCard(new Card('10', 'hearts'));
+    hand.addCard(new Card('J', 'hearts'));
+
     assert.strictEqual(hand.getTotal(), 20);
   });
 
   it('should check if hand is bust', () => {
-    const card1 = new Card('10', 'hearts');
-    const card2 = new Card('J', 'hearts');
-    const card3 = new Card('2', 'hearts');
-    hand.addCard(card1);
-    hand.addCard(card2);
-    hand.addCard(card3);
+    hand.addCard(new Card('10', 'hearts'));
+    hand.addCard(new Card('J', 'hearts'));
+    hand.addCard(new Card('2', 'hearts'));
+
     assert.strictEqual(hand.isBust(), true);
   });
 
@@ -63,16 +61,12 @@ describe('Hand', () => {
   });
 
   it('should compare to another hand', () => {
-    const card1 = new Card('10', 'hearts');
-    const card2 = new Card('J', 'hearts');
-    hand.addCard(card1);
-    hand.addCard(card2);
+    hand.addCard(new Card('10', 'hearts'));
+    hand.addCard(new Card('J', 'hearts'));
 
     const anotherHand = new Hand();
-    const card3 = new Card('9', 'hearts');
-    const card4 = new Card('J', 'hearts');
-    anotherHand.addCard(card3);
-    anotherHand.addCard(card4);
+    anotherHand.addCard(new Card('9', 'hearts'));
+    anotherHand.addCard(new Card('J', 'hearts'));
 
     assert.strictEqual(hand.compareTo(anotherHand), 'win');
   });

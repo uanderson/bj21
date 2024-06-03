@@ -90,7 +90,7 @@ export class Player {
   /**
    * Retrieves the current state of the player.
    *
-   * @returns {Object} An object containing the current state of the player.
+   * @returns an object with the state of the player.
    */
   getState() {
     return {

@@ -9,7 +9,7 @@ export class Card {
   /**
    * Checks if the card is an ace.
    *
-   * @returns {boolean} True if the card is an ace, otherwise false.
+   * @returns true if the card is an ace, otherwise false.
    */
   isAce() {
     return this.rank === ACE_CARD;
@@ -22,7 +22,7 @@ export class Card {
    * If the card is an ace, returns the predefined value for aces.
    * Otherwise, returns the numeric value corresponding to the card's rank.
    *
-   * @returns {number} The value of the card.
+   * @returns the value of the card.
    */
   getValue() {
     if (COURT_CARDS.includes(this.rank)) {
@@ -39,7 +39,7 @@ export class Card {
   /**
    * Retrieves the state of the card, including its rank and suit.
    *
-   * @returns {Object} The state of the card, containing its rank and suit.
+   * @returns the state of the card.
    */
   getState() {
     return {

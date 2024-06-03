@@ -25,7 +25,7 @@ export class Deck {
    * and creating a card object for each combination. The resulting array contains all
    * possible cards in a standard deck.
    *
-   * @returns {Card[]} An array containing all cards in the initialized deck.
+   * @returns an array containing all cards in the initialized deck.
    */
   initializeDeck() {
     let deck = [];

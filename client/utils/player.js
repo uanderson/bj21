@@ -10,8 +10,6 @@ const KEY_ID = '@blackjack/player-id';
 export const acquirePlayerId = () => {
   const storedId = sessionStorage.getItem(KEY_ID);
 
-  console.log('>>> storedId', storedId);
-
   if (storedId) {
     return storedId;
   }
