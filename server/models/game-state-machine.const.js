@@ -1,1 +1,1 @@
-export const WAIT_BEFORE_RESTART_IN_MS = 5000;
+export const WAIT_BEFORE_RESTART_IN_MS = 3000;
