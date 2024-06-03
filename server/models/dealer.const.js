@@ -1,0 +1,1 @@
+export const DEALER_STANDS_THRESHOLD = 17;
