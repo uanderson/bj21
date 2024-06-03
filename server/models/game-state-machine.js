@@ -3,12 +3,15 @@ import { throwModelError } from '../utils/errors.js';
 import { WAIT_BEFORE_RESTART_IN_MS } from './game-state-machine.const.js';
 
 export class GameStateMachine {
-  constructor(game) {
-    this.game = game;
+  constructor() {
     this.eventEmitter = new EventEmitter();
     this.currentState = 'initial';
 
     this.initializeStates();
+  }
+
+  getCurrentState() {
+    return this.currentState;
   }
 
   /**
@@ -57,12 +60,36 @@ export class GameStateMachine {
   }
 
   /**
+   * Sets the game instance for the state machine to operate on.
+   *
+   * @param game - The game instance to be set.
+   */
+  setGame(game) {
+    if (!game) {
+      throw new Error('Game instance not provided');
+    }
+
+    this.game = game;
+  }
+
+  /**
+   * Asserts that the game instance is set before performing any state transitions.
+   */
+  assertGameIsSet() {
+    if (!this.game) {
+      throwModelError('Game not set in the state machine');
+    }
+  }
+
+  /**
    * Transitions the game to a new state based on the specified event.
    *
    * @param {string} event - The event triggering the state transition.
    * @throws {Error} If the transition event is invalid or not defined in the current state.
    */
   transitionTo(event) {
+    this.assertGameIsSet();
+
     const currentStateDefinition = this.states[this.currentState];
     const nextState = currentStateDefinition.transitions[event];
 
@@ -82,6 +109,8 @@ export class GameStateMachine {
    * @param {Function} callback - The callback function to be executed when the game state matches the specified state.
    */
   whenStateIs(state, callback) {
+    this.assertGameIsSet();
+
     this.eventEmitter.on(state, callback);
   }
 }
