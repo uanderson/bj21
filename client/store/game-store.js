@@ -24,7 +24,7 @@ export class GameStore {
     const player = seat?.player ? {
       ...seat.player,
       seatPosition: seat.position,
-      isPlaying: isMyTurn
+      isMyTurn
     } : null;
 
     const updatedState = {
